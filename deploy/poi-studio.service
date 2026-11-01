@@ -1,0 +1,24 @@
+[Unit]
+Description=POI Studio 2 - Collaborative Trip & POI Planner
+After=network.target
+
+[Service]
+Type=simple
+User=karoc
+WorkingDirectory=/home/karoc/dev/poi-studio-2
+ExecStart=/usr/bin/node .next/standalone/server.js
+Restart=always
+RestartSec=5
+Environment=NODE_ENV=production
+Environment=PORT=3000
+Environment=HOSTNAME=0.0.0.0
+Environment=DATABASE_URL=file:./local.db
+
+# Security sandboxing
+NoNewPrivileges=true
+ProtectSystem=full
+ProtectHome=read-only
+ReadWritePaths=/home/karoc/dev/poi-studio-2
+
+[Install]
+WantedBy=multi-user.target
